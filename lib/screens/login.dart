@@ -1,8 +1,5 @@
-
-
 import 'package:flutter/material.dart';
-
-
+import 'package:zeft/colors.dart';
 import '../firebase/auth.dart';
 import 'airline_reservation.dart';
 import 'new_account.dart';
@@ -14,12 +11,9 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-Color c = const Color.fromRGBO(196, 230, 251, 1);
-Color cb = const Color.fromRGBO(61, 103, 107, 1);
-
 gotoAirlineReservation(BuildContext ctx) {
   Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (_) {
-    return AirlineReservation();
+    return const AirlineReservation();
   }));
 }
 
@@ -27,12 +21,11 @@ class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //C5E7FC
-      backgroundColor: c,
+      backgroundColor: lightBlue,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -61,13 +54,13 @@ class _LoginState extends State<Login> {
                         }
                         return null;
                       },
-                      decoration: const InputDecoration(
-                        label: Text('Enter Email'),
-                        fillColor: Colors.white,
+                      decoration: InputDecoration(
+                        label: const Text('Enter Email'),
+                        fillColor: white,
                         filled: true,
                         enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide()),
-                        focusedBorder: OutlineInputBorder(
+                            const OutlineInputBorder(borderSide: BorderSide()),
+                        focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(width: 1)),
                       ),
                     ),
@@ -89,13 +82,13 @@ class _LoginState extends State<Login> {
                         return null;
                       },
                       obscureText: true,
-                      decoration: const InputDecoration(
-                        label: Text('Enter password'),
-                        fillColor: Colors.white,
+                      decoration: InputDecoration(
+                        label: const Text('Enter password'),
+                        fillColor: white,
                         filled: true,
                         enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide()),
-                        focusedBorder: OutlineInputBorder(
+                            const OutlineInputBorder(borderSide: BorderSide()),
+                        focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(width: 1)),
                       ),
                     ),
@@ -108,22 +101,24 @@ class _LoginState extends State<Login> {
                     height: 40,
                     width: 100,
                     decoration: BoxDecoration(
-                      color: cb,
+                      color: darkBlue,
                       borderRadius: const BorderRadius.all(
                         Radius.circular(6),
                       ),
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Auth().signIn(emailController.text,passwordController.text).
-                        then((value) => Navigator.pushReplacement(context,MaterialPageRoute(builder: (_){
-                          return AirlineReservation();
-                        }
-                        )));
+                        Auth()
+                            .signIn(
+                                emailController.text, passwordController.text)
+                            .then((value) => Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return const AirlineReservation();
+                                })));
                       },
-                      child: const Text(
+                      child: Text(
                         'Login',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: TextStyle(color: white, fontSize: 20),
                       ),
                     )),
                 const SizedBox(
@@ -139,7 +134,7 @@ class _LoginState extends State<Login> {
                   )),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return NewAccount();
+                      return const NewAccount();
                     }));
                   },
                 ),

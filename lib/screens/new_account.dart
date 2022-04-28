@@ -1,38 +1,38 @@
-
 import 'package:flutter/material.dart';
-
-
-
+import 'package:zeft/colors.dart';
 import '../firebase/auth.dart';
 import '../widgets/screen_textfield.dart';
 import 'login.dart';
 
-
 // ignore: must_be_immutable
 class NewAccount extends StatelessWidget {
-  Color c = const Color.fromRGBO(196, 230, 251, 1);
-  Color cb = const Color.fromRGBO(61, 103, 107, 1);
+  const NewAccount({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-    void showDialogError( String message){
-      showDialog(context: context,
-          builder: (ctx)=>AlertDialog(
-            title: const Text('An Error Occurred'),
-            content: Text(message),
-            actions: [
-              TextButton(onPressed: (){
-                Navigator.of(ctx).pop();}, child: const Text('OK'))
-            ],
-          )
-      );
+
+    void showDialogError(String message) {
+      showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                title: const Text('An Error Occurred'),
+                content: Text(message),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: const Text('OK'))
+                ],
+              ));
     }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create New Account'),
-        backgroundColor: cb,
+        backgroundColor: darkBlue,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -58,13 +58,14 @@ class NewAccount extends StatelessWidget {
                       return null;
                     }
                   },
-                  decoration: const InputDecoration(
-                    label: Text('Enter email'),
-                    fillColor: Colors.white,
+                  decoration: InputDecoration(
+                    label: const Text('Enter email'),
+                    fillColor: white,
                     filled: true,
-                    enabledBorder: OutlineInputBorder(borderSide: BorderSide()),
-                    focusedBorder:
-                        OutlineInputBorder(borderSide: BorderSide(width: 1)),
+                    enabledBorder:
+                        const OutlineInputBorder(borderSide: BorderSide()),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(width: 1)),
                   ),
                 ),
               ),
@@ -83,13 +84,14 @@ class NewAccount extends StatelessWidget {
                     }
                   },
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    label: Text('Enter password'),
-                    fillColor: Colors.white,
+                  decoration: InputDecoration(
+                    label: const Text('Enter password'),
+                    fillColor: white,
                     filled: true,
-                    enabledBorder: OutlineInputBorder(borderSide: BorderSide()),
-                    focusedBorder:
-                        OutlineInputBorder(borderSide: BorderSide(width: 1)),
+                    enabledBorder:
+                        const OutlineInputBorder(borderSide: BorderSide()),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(width: 1)),
                   ),
                 ),
               ),
@@ -108,13 +110,14 @@ class NewAccount extends StatelessWidget {
                     }
                   },
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    label: Text('confirm password'),
-                    fillColor: Colors.white,
+                  decoration: InputDecoration(
+                    label: const Text('confirm password'),
+                    fillColor: white,
                     filled: true,
-                    enabledBorder: OutlineInputBorder(borderSide: BorderSide()),
-                    focusedBorder:
-                        OutlineInputBorder(borderSide: BorderSide(width: 1)),
+                    enabledBorder:
+                        const OutlineInputBorder(borderSide: BorderSide()),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(width: 1)),
                   ),
                 ),
               ),
@@ -123,7 +126,7 @@ class NewAccount extends StatelessWidget {
               ),
               Container(
                   decoration: BoxDecoration(
-                    color: cb,
+                    color: darkBlue,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(6),
                     ),
@@ -132,26 +135,37 @@ class NewAccount extends StatelessWidget {
                   width: 100,
                   child: TextButton(
                     onPressed: () async {
-                      try{
-                         await Auth().signUp(emailController.text,passwordController.text).
-                         then((value) => Navigator.pushReplacement(context,MaterialPageRoute(builder: (_){
-                           return Login();
-                         }
-                         )));
-                      }
-                      catch(error ){
-                        var errorMessage='Authentication failed';
-                        if(error.toString().contains('EMAIl_EXISTS')){errorMessage='This email address is already use';}
-                        else if(error.toString().contains('INVALID_EMAIL')){errorMessage='This is not email address ';}
-                        else if(error.toString().contains('WEAK_PASSWORD')){errorMessage='This password is too weak ';}
-                        else if(error.toString().contains('EMAIL_NOT_FOUND')){errorMessage='Can not find user with this email ';}
-                        else if(error.toString().contains('INVALID_PASSWORD')){errorMessage='Invalid password ';}
+                      try {
+                        await Auth()
+                            .signUp(
+                                emailController.text, passwordController.text)
+                            .then((value) => Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return const Login();
+                                })));
+                      } catch (error) {
+                        var errorMessage = 'Authentication failed';
+                        if (error.toString().contains('EMAIl_EXISTS')) {
+                          errorMessage = 'This email address is already use';
+                        } else if (error.toString().contains('INVALID_EMAIL')) {
+                          errorMessage = 'This is not email address ';
+                        } else if (error.toString().contains('WEAK_PASSWORD')) {
+                          errorMessage = 'This password is too weak ';
+                        } else if (error
+                            .toString()
+                            .contains('EMAIL_NOT_FOUND')) {
+                          errorMessage = 'Can not find user with this email ';
+                        } else if (error
+                            .toString()
+                            .contains('INVALID_PASSWORD')) {
+                          errorMessage = 'Invalid password ';
+                        }
                         showDialogError(errorMessage);
                       }
                     },
-                    child: const Text(
+                    child: Text(
                       'Done',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: white, fontSize: 20),
                     ),
                   ))
             ],

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-
+import 'package:zeft/colors.dart';
 import 'personal_info.dart';
 
 // ignore: must_be_immutable
 class TicketInfo extends StatelessWidget {
-  Color cb = const Color.fromRGBO(61, 103, 107, 1);
-  Color c = const Color.fromRGBO(196, 230, 251, 1);
+  const TicketInfo({Key? key}) : super(key: key);
 
-  TicketInfo({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ticket Information'),
-        backgroundColor: cb,
+        backgroundColor: darkBlue,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -21,7 +19,7 @@ class TicketInfo extends StatelessWidget {
           height: double.infinity,
           width: double.infinity,
           decoration: BoxDecoration(
-              color: c,
+              color: lightBlue,
               borderRadius: const BorderRadius.all(Radius.circular(40)),
               border: Border.all(color: Colors.black)),
           child: Padding(
@@ -122,7 +120,7 @@ class TicketInfo extends StatelessWidget {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                    color: cb,
+                    color: darkBlue,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(6),
                     ),
@@ -133,12 +131,12 @@ class TicketInfo extends StatelessWidget {
                     onPressed: () => {
                       Navigator.of(context)
                           .pushReplacement(MaterialPageRoute(builder: (_) {
-                        return PersonalInfo();
+                        return const PersonalInfo();
                       }))
                     },
-                    child: const Text(
+                    child: Text(
                       'Book this ticket',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: white, fontSize: 20),
                     ),
                   ),
                 ),

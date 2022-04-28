@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:zeft/colors.dart';
 
 import '../widgets/screen_textfield.dart';
 import 'ava_flight.dart';
 
 class Booking extends StatefulWidget {
   const Booking({Key? key}) : super(key: key);
-
-
 
   static double calcPrice(int noTravellers, double ticketPrice) {
     return noTravellers * ticketPrice;
@@ -19,25 +16,21 @@ class Booking extends StatefulWidget {
 }
 
 class _BookingState extends State<Booking> {
-  Color c = const Color.fromRGBO(196, 230, 251, 1);
-  Color cb = const Color.fromRGBO(61, 103, 107, 1);
-
   gotoAvaFlight(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
       return AvailableFlight();
     }));
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Booking',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: white),
         ),
-        backgroundColor: cb,
+        backgroundColor: darkBlue,
       ),
       body: SafeArea(
         child: Padding(
@@ -76,7 +69,7 @@ class _BookingState extends State<Booking> {
                 padding: const EdgeInsets.only(left: 70, right: 70),
                 child: Container(
                     decoration: BoxDecoration(
-                      color: cb,
+                      color: darkBlue,
                       borderRadius: const BorderRadius.all(
                         Radius.circular(6),
                       ),
@@ -85,9 +78,9 @@ class _BookingState extends State<Booking> {
                     width: 100,
                     child: TextButton(
                       onPressed: () => gotoAvaFlight(context),
-                      child: const Text(
+                      child: Text(
                         'Search for flights',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
+                        style: TextStyle(color: white, fontSize: 20),
                       ),
                     )),
               ),

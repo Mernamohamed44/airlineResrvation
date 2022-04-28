@@ -1,19 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:zeft/colors.dart';
 import '../widgets/screen_textfield.dart';
 
 // ignore: must_be_immutable
 class CheckFlight extends StatelessWidget {
-  Color cb = const Color.fromRGBO(61, 103, 107, 1);
-  Color c = const Color.fromRGBO(196, 230, 251, 1);
+  const CheckFlight({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Check ticket'),
-        backgroundColor: cb,
+        backgroundColor: darkBlue,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -30,7 +28,7 @@ class CheckFlight extends StatelessWidget {
               height: 550,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: c,
+                  color: lightBlue,
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                   border: Border.all(color: Colors.black)),
               child: Padding(

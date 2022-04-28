@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
-
+import 'package:zeft/colors.dart';
 import '../widgets/screen_textfield.dart';
 
 // ignore: must_be_immutable
 class PersonalInfo extends StatelessWidget {
-  Color cb = const Color.fromRGBO(61, 103, 107, 1);
-  Widget miniTextfield() {
-    return  SizedBox(
-      height: 30,
-      width: 30,
-      child: TextField(
-          keyboardType: TextInputType.number,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 10)),
-    );
-  }
+  const PersonalInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Personal Information'),
-        backgroundColor: cb,
+        backgroundColor: darkBlue,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -54,7 +44,7 @@ class PersonalInfo extends StatelessWidget {
               ),
               Container(
                   decoration: BoxDecoration(
-                    color: cb,
+                    color: darkBlue,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(6),
                     ),
@@ -63,9 +53,9 @@ class PersonalInfo extends StatelessWidget {
                   width: 200,
                   child: TextButton(
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       '   Confirm   ',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: white),
                     ),
                   ))
             ],
