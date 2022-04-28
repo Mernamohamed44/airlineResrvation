@@ -35,6 +35,7 @@ class _AirlineReservationState extends State<AirlineReservation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: Text(
           'AirlineReservation',
@@ -69,7 +70,7 @@ class _AirlineReservationState extends State<AirlineReservation> {
                     child: TextButton(
                       onPressed: () => logout(context),
                       child: Text(
-                        'Logout',
+                        'Log out',
                         style: TextStyle(color: white, fontSize: 20),
                       ),
                     )),

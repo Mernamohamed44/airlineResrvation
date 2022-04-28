@@ -8,7 +8,23 @@ class PersonalInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void showDialogMessage() {
+      showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                content: const Text("Ticket booked successfully."),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: const Text('close'))
+                ],
+              ));
+    }
+
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: const Text('Personal Information'),
         backgroundColor: darkBlue,
@@ -43,21 +59,22 @@ class PersonalInfo extends StatelessWidget {
                 height: 80,
               ),
               Container(
-                  decoration: BoxDecoration(
-                    color: darkBlue,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(6),
-                    ),
+                decoration: BoxDecoration(
+                  color: darkBlue,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(6),
                   ),
-                  height: 40,
-                  width: 200,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      '   Confirm   ',
-                      style: TextStyle(color: white),
-                    ),
-                  ))
+                ),
+                height: 40,
+                width: 200,
+                child: TextButton(
+                  onPressed: () => showDialogMessage(),
+                  child: Text(
+                    '   Confirm   ',
+                    style: TextStyle(color: white),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

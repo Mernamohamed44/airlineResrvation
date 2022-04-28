@@ -9,6 +9,7 @@ class CheckFlight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: const Text('Check ticket'),
         backgroundColor: darkBlue,

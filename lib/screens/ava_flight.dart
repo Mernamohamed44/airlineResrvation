@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zeft/colors.dart';
 import 'package:zeft/widgets/ava_card.dart';
 import 'ticket_info.dart';
 
@@ -12,6 +13,7 @@ class AvailableFlight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: const Text('Available flight'),
         backgroundColor: cb,

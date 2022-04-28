@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zeft/colors.dart';
-import 'package:zeft/screens/booking.dart';
+import 'package:zeft/screens/personal_info.dart';
 
 class AvaCard extends StatelessWidget {
   const AvaCard(
@@ -47,7 +47,7 @@ class AvaCard extends StatelessWidget {
                         onPressed: () => {
                               Navigator.of(context)
                                   .push(MaterialPageRoute(builder: (_) {
-                                return const Booking();
+                                return const PersonalInfo();
                               }))
                             }))
               ],

@@ -30,6 +30,7 @@ class NewAccount extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: const Text('Create New Account'),
         backgroundColor: darkBlue,

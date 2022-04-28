@@ -9,6 +9,7 @@ class TicketInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: const Text('Ticket Information'),
         backgroundColor: darkBlue,

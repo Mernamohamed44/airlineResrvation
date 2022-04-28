@@ -25,6 +25,7 @@ class _BookingState extends State<Booking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
         title: Text(
           'Booking',

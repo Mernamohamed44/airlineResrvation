@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zeft/colors.dart';
 
 class ScreenTextField extends StatefulWidget {
   final String labelText;
@@ -18,7 +17,7 @@ class _ScreenTextFieldState extends State<ScreenTextField> {
       child: TextField(
         decoration: InputDecoration(
           label: Text(widget.labelText),
-          fillColor: white,
+          fillColor: Colors.white,
           filled: true,
           enabledBorder: const OutlineInputBorder(borderSide: BorderSide()),
           focusedBorder:
