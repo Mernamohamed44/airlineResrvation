@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zeft/colors.dart';
 import '../firebase/auth.dart';
@@ -23,6 +24,21 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    void showDialogMessage() {
+      showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+                content: const Text("You must enter email and password."),
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(ctx).pop();
+                      },
+                      child: const Text('back'))
+                ],
+              ));
+    }
+
     return Scaffold(
       //C5E7FC
       backgroundColor: lightBlue,
@@ -108,13 +124,18 @@ class _LoginState extends State<Login> {
                     ),
                     child: TextButton(
                       onPressed: () {
-                        Auth()
-                            .signIn(
-                                emailController.text, passwordController.text)
-                            .then((value) => Navigator.pushReplacement(context,
-                                    MaterialPageRoute(builder: (_) {
-                                  return const AirlineReservation();
-                                })));
+                        if (emailController.text.isEmpty ||
+                            passwordController.text.isEmpty) {
+                          showDialogMessage();
+                        } else {
+                          Auth()
+                              .signIn(
+                                  emailController.text, passwordController.text)
+                              .then((value) => Navigator.pushReplacement(
+                                      context, MaterialPageRoute(builder: (_) {
+                                    return const AirlineReservation();
+                                  })));
+                        }
                       },
                       child: Text(
                         'Login',
@@ -124,19 +145,29 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                   height: 25,
                 ),
-                InkWell(
-                  child: const Center(
-                      child: Text(
-                    'Create new account',
-                    style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue),
-                  )),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return const NewAccount();
-                    }));
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account?",
+                    ),
+                    const SizedBox(width: 5),
+                    InkWell(
+                      child: const Center(
+                          child: Text(
+                        "Sign up",
+                        style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue),
+                      )),
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) {
+                          return const NewAccount();
+                        }));
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
