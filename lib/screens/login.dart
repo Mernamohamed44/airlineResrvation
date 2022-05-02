@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:zeft/colors.dart';
 import '../firebase/auth.dart';
@@ -127,7 +127,8 @@ class _LoginState extends State<Login> {
                         if (emailController.text.isEmpty ||
                             passwordController.text.isEmpty) {
                           showDialogMessage();
-                        } else {
+                        }
+                        else {
                           Auth()
                               .signIn(
                                   emailController.text, passwordController.text)

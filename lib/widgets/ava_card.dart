@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:zeft/colors.dart';
+import 'package:zeft/flight_data.dart';
 import 'package:zeft/screens/personal_info.dart';
 
 class AvaCard extends StatelessWidget {
   const AvaCard(
-      {Key? key, required this.text1, required this.text2, required this.text3})
+      {Key? key, required this.index})
       : super(key: key);
 
-  final String text1;
-  final String text2;
-  final String text3;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return Card(
         color: lightBlue,
-        elevation: 40,
+        elevation: 10,
         child: Container(
           height: 170,
           padding: const EdgeInsets.all(20.0),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(text1, style: const TextStyle(fontSize: 20)),
+            Text(flightData[index].departureDate + " --> " + flightData[index].arrivalDate, style: const TextStyle(fontSize: 20)),
             const SizedBox(height: 10),
-            Text(text2, style: const TextStyle(fontSize: 20)),
+            Text(flightData[index].departureAirport + " --> " + flightData[index].arrivalAirport, style: const TextStyle(fontSize: 20)),
             const SizedBox(height: 10),
-            Text(text3, style: const TextStyle(fontSize: 20)),
+            Text("Price: " + flightData[index].price, style: const TextStyle(fontSize: 20)),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
