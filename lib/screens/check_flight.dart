@@ -1,10 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:zeft/colors.dart';
-import '../widgets/screen_textfield.dart';
+import 'package:zeft/flight_data.dart';
+import 'package:zeft/widgets/check_ticket_data_box.dart';
 
 // ignore: must_be_immutable
-class CheckFlight extends StatelessWidget {
+class CheckFlight extends StatefulWidget {
   const CheckFlight({Key? key}) : super(key: key);
+
+  @override
+  State<CheckFlight> createState() => _CheckFlightState();
+}
+
+class _CheckFlightState extends State<CheckFlight> {
+  final myController = TextEditingController();
+
+  String id = "";
+  String departureAirport = "";
+  String arrivalAirport = "";
+  String departureDate = "";
+  String arrivalDate = "";
+  String ticketClass = "";
+  String paymentMethod = "";
+  String price = "";
+
+  int get flightIndex {
+    switch (myController.text) {
+      case "12345":
+        return 0;
+      case "56789":
+        return 1;
+      case "10000":
+        return 2;
+      case "23456":
+        return 3;
+      case "98765":
+        return 4;
+      case "54321":
+        return 5;
+      case "20000":
+        return 6;
+      case "50000":
+        return 7;
+      default:
+        return 0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,75 +56,76 @@ class CheckFlight extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const ScreenTextField('Enter ticket ID'),
-            const SizedBox(
-              height: 40,
-            ),
-            Container(
-              height: 550,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: lightBlue,
-                  borderRadius: const BorderRadius.all(Radius.circular(30)),
-                  border: Border.all(color: Colors.black)),
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Personal information:',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 50,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: myController,
+                        decoration: const InputDecoration(
+                          label: Text("Enter ticket ID"),
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder:
+                              OutlineInputBorder(borderSide: BorderSide()),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1)),
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 20),
-                    Text('Name: Merna Mohamed', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('SSN:8686866439', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('PN:4678825889', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('Age:21', style: TextStyle(fontSize: 20)),
-                    SizedBox(
-                      height: 50,
+                    const SizedBox(
+                      width: 10,
                     ),
-                    Text('Flight Info :',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 25)),
-                    SizedBox(height: 20),
-                    Text('Flight ID :12345', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('Departure date : 24 oct, 22',
-                        style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('Take off : 7pm', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('landing : 12am', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('class : Economy class ',
-                        style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('payment method : credit card ',
-                        style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('seat : 3A ', style: TextStyle(fontSize: 20)),
-                    SizedBox(height: 5),
-                    Text('luggage weight : 20 kg ',
-                        style: TextStyle(fontSize: 20)),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    Container(
+                      color: darkBlue,
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            id = flightData[flightIndex].id;
+                            departureAirport =
+                                flightData[flightIndex].departureAirport;
+                            arrivalAirport =
+                                flightData[flightIndex].arrivalAirport;
+                            departureDate =
+                                flightData[flightIndex].departureDate;
+                            arrivalDate = flightData[flightIndex].arrivalDate;
+                            ticketClass = flightData[flightIndex].ticketClass;
+                            paymentMethod =
+                                flightData[flightIndex].paymentMethod;
+                            price = flightData[flightIndex].price;
+                          });
+                        },
+                        icon: Icon(
+                          Icons.flight,
+                          color: white,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
-            )
-          ],
+              const SizedBox(
+                height: 40,
+              ),
+              DataBox(
+                id: id,
+                price: price,
+                departureDate: departureDate,
+                paymentMethod: paymentMethod,
+                arrivalDate: arrivalDate,
+                ticketClass: ticketClass,
+                arrivalAirport: arrivalAirport,
+                departureAirport: departureAirport,
+              ),
+            ],
+          ),
         ),
       ),
     );

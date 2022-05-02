@@ -46,7 +46,7 @@ class TicketInfo extends StatelessWidget {
                       height: 15,
                     ),
                     Text(
-                      "Flight ID: "+flightData[index].id,
+                      "Flight ID: "+flightData[index].id.toString(),
                       style: const TextStyle(
                         fontSize: 24,
                       ),
