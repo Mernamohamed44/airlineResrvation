@@ -12,6 +12,10 @@ class DataBox extends StatelessWidget {
     required this.ticketClass,
     required this.paymentMethod,
     required this.price,
+    required this.takeOff,
+    required this.landing,
+    required this.seat,
+    required this.luggageWeight,
   }) : super(key: key);
 
   final String id;
@@ -22,6 +26,10 @@ class DataBox extends StatelessWidget {
   final String ticketClass;
   final String paymentMethod;
   final String price;
+  final String takeOff;
+  final String landing;
+  final String seat;
+  final String luggageWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -64,19 +72,20 @@ class DataBox extends StatelessWidget {
               Text('Arrival date: ' + arrivalDate,
                   style: const TextStyle(fontSize: 20)),
               const SizedBox(height: 5),
-              const Text('Take off : 7pm', style: TextStyle(fontSize: 20)),
+               Text('Take off: '+takeOff, style: const TextStyle(fontSize: 20)),
               const SizedBox(height: 5),
-              const Text('landing : 12am', style: TextStyle(fontSize: 20)),
+               Text('Landing: '+landing, style: const TextStyle(fontSize: 20)),
               const SizedBox(height: 5),
-              Text('class: ' + ticketClass, style: const TextStyle(fontSize: 20)),
-              const SizedBox(height: 5),
-              Text('payment method: ' + paymentMethod,
+              Text('Class: ' + ticketClass,
                   style: const TextStyle(fontSize: 20)),
               const SizedBox(height: 5),
-              const Text('seat : 3A ', style: TextStyle(fontSize: 20)),
+              Text('Payment method: ' + paymentMethod,
+                  style: const TextStyle(fontSize: 20)),
               const SizedBox(height: 5),
-              const Text('luggage weight : 20 kg ',
-                  style: TextStyle(fontSize: 20)),
+               Text('Seat: '+seat, style: const TextStyle(fontSize: 20)),
+              const SizedBox(height: 5),
+               Text('Luggage weight: '+luggageWeight,
+                  style: const TextStyle(fontSize: 20)),
               const SizedBox(
                 height: 20,
               ),

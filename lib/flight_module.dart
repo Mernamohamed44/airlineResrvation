@@ -9,6 +9,10 @@ class Flight {
     this.ticketClass,
     this.paymentMethod,
     this.price,
+    this.landing,
+    this.takeOff,
+    this.luggageWeight,
+    this.seat,
   );
 
   final String id;
@@ -20,4 +24,8 @@ class Flight {
   final String ticketClass;
   final String paymentMethod;
   final String price;
+  final String landing;
+  final String takeOff;
+  final String luggageWeight;
+  final String seat;
 }

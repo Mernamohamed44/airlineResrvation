@@ -22,6 +22,10 @@ class _CheckFlightState extends State<CheckFlight> {
   String ticketClass = "";
   String paymentMethod = "";
   String price = "";
+  String landing = "";
+  String takeOff = "";
+  String luggageWeight = "";
+  String seat = "";
 
   int get flightIndex {
     switch (myController.text) {
@@ -42,7 +46,7 @@ class _CheckFlightState extends State<CheckFlight> {
       case "50000":
         return 7;
       default:
-        return 0;
+        return 8;
     }
   }
 
@@ -100,6 +104,10 @@ class _CheckFlightState extends State<CheckFlight> {
                             paymentMethod =
                                 flightData[flightIndex].paymentMethod;
                             price = flightData[flightIndex].price;
+                            landing = flightData[flightIndex].landing;
+                            takeOff = flightData[flightIndex].takeOff;
+                            luggageWeight = flightData[flightIndex].luggageWeight;
+                            seat = flightData[flightIndex].seat;
                           });
                         },
                         icon: Icon(
@@ -123,6 +131,10 @@ class _CheckFlightState extends State<CheckFlight> {
                 ticketClass: ticketClass,
                 arrivalAirport: arrivalAirport,
                 departureAirport: departureAirport,
+                landing: landing,
+                takeOff: takeOff,
+                luggageWeight: luggageWeight,
+                seat: seat,
               ),
             ],
           ),
