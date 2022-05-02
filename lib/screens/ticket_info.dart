@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:zeft/colors.dart';
 import 'personal_info.dart';
+import 'package:zeft/flight_data.dart';
 
 // ignore: must_be_immutable
 class TicketInfo extends StatelessWidget {
-  const TicketInfo({Key? key}) : super(key: key);
+  const TicketInfo({Key? key, required this.index}) : super(key: key);
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -29,89 +32,98 @@ class TicketInfo extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(
+                  children:  [
+                    const SizedBox(
                       height: 40,
                     ),
-                    Text(
+                    const Text(
                       'Airline: Al- Jazeera airlines',
                       style: TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Text(
-                      'Flight ID : 12345',
-                      style: TextStyle(
+                      "Flight ID: "+flightData[index].id,
+                      style: const TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Text(
-                      'Departure date: 24 oct.2022',
-                      style: TextStyle(
+                      "Departure Date: "+flightData[index].departureDate,
+                      style: const TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Text(
+                      "Arrival Date: "+flightData[index].arrivalDate,
+                      style: const TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Text(
                       'Take off : 7 pm',
                       style: TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      'landing : 12 am',
+                    const Text(
+                      'Landing : 12 am',
                       style: TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Text(
-                      'class : Economy class ',
+                      "Class:"+flightData[index].ticketClass,
+                      style: const TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Text(
+                      "Payment Method: "+flightData[index].paymentMethod,
+                      style: const TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    const Text(
+                      'Seat : 3A ',
                       style: TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      'payment method : credit card ',
+                    const Text(
+                      'Luggage weight : 20 kg ',
                       style: TextStyle(
                         fontSize: 24,
                       ),
                     ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      'seat : 3A ',
-                      style: TextStyle(
-                        fontSize: 24,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text(
-                      'luggage weight : 20 kg ',
-                      style: TextStyle(
-                        fontSize: 24,
-                      ),
-                    ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                   ],

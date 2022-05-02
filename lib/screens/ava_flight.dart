@@ -29,37 +29,93 @@ class AvailableFlight extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return const TicketInfo();
+                      return  const TicketInfo(index: 0,);
                     }));
                   }),
               const SizedBox(
                 height: 20,
               ),
-              const AvaCard(index: 1),
+              InkWell(
+                  child: const AvaCard(
+                    index: 1,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return  const TicketInfo(index: 1,);
+                    }));
+                  }),
               const SizedBox(
                 height: 20,
               ),
-              const AvaCard(index: 2),
+              InkWell(
+                  child: const AvaCard(
+                    index: 2,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return  const TicketInfo(index: 2,);
+                    }));
+                  }),
               const SizedBox(
                 height: 20,
               ),
-              const AvaCard(index: 3),
+              InkWell(
+                  child: const AvaCard(
+                    index: 3,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return  const TicketInfo(index: 3,);
+                    }));
+                  }),
               const SizedBox(
                 height: 20,
               ),
-              const AvaCard(index: 4),
+              InkWell(
+                  child: const AvaCard(
+                    index: 4,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return  const TicketInfo(index: 4,);
+                    }));
+                  }),
               const SizedBox(
                 height: 20,
               ),
-              const AvaCard(index: 5),
+              InkWell(
+                  child: const AvaCard(
+                    index: 5,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return  const TicketInfo(index: 5,);
+                    }));
+                  }),
               const SizedBox(
                 height: 20,
               ),
-              const AvaCard(index: 6),
+              InkWell(
+                  child: const AvaCard(
+                    index: 6,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return  const TicketInfo(index: 6,);
+                    }));
+                  }),
               const SizedBox(
                 height: 20,
               ),
-              const AvaCard(index: 7),
+              InkWell(
+                  child: const AvaCard(
+                    index: 7,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return  const TicketInfo(index: 7,);
+                    }));
+                  }),
             ],
           ),
         ),
