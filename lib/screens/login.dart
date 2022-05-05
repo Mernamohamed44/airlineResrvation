@@ -1,7 +1,4 @@
-
-
 import 'package:flutter/material.dart';
-
 
 import '../firebase/auth.dart';
 import 'airline_reservation.dart';
@@ -30,18 +27,17 @@ class _LoginState extends State<Login> {
     showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('An Error Occurred'),
-          content: Text(message),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-                child: const Text('OK'))
-          ],
-        ));
+              title: const Text('An Error Occurred'),
+              content: Text(message),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(ctx).pop();
+                    },
+                    child: const Text('OK'))
+              ],
+            ));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -129,29 +125,30 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     child: TextButton(
-                      onPressed: () async{
-                       try{
-                         await Auth().signIn(emailController.text,passwordController.text).
-                        then((value) => Navigator.pushReplacement(context,MaterialPageRoute(builder: (_){
-                          return const AirlineReservation();
+                      onPressed: () async {
+                        try {
+                          await Auth()
+                              .signIn(
+                                  emailController.text, passwordController.text)
+                              .then((value) => Navigator.pushReplacement(
+                                      context, MaterialPageRoute(builder: (_) {
+                                    return const AirlineReservation();
+                                  })));
+                        } catch (error) {
+                          var errorMessage = 'Authentication failed';
+                          if (error.toString().contains('EMAIL_NOT_FOUND')) {
+                            errorMessage = 'This email address is not found ';
+                          } else if (error
+                              .toString()
+                              .contains('INVALID_EMAIL')) {
+                            errorMessage = 'This is not email address ';
+                          } else if (error
+                              .toString()
+                              .contains('INVALID_PASSWORD')) {
+                            errorMessage = 'Wrong password ';
+                          }
+                          showDialogError(errorMessage);
                         }
-                        )));
-                       }
-                       catch (error) {
-                         var errorMessage = 'Authentication failed';
-                         if (error.toString().contains('EMAIL_NOT_FOUND')) {
-                           errorMessage = 'This email address is not found ';
-                         } else if (error.toString().contains('INVALID_EMAIL')) {
-                           errorMessage = 'This is not email address ';
-                         } else if (error.toString().contains('WEAK_PASSWORD')) {
-                           errorMessage = 'This password is too weak ';
-                         }  else if (error
-                             .toString()
-                             .contains('INVALID_PASSWORD')) {
-                           errorMessage = 'Invalid password ';
-                         }
-                         showDialogError(errorMessage);
-                       }
                       },
                       child: const Text(
                         'Login',
