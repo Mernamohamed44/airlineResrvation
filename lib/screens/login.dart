@@ -141,7 +141,7 @@ class _LoginState extends State<Login> {
                           } else if (error
                               .toString()
                               .contains('INVALID_EMAIL')) {
-                            errorMessage = 'This is not email address ';
+                            errorMessage = 'Please enter correct email ';
                           } else if (error
                               .toString()
                               .contains('INVALID_PASSWORD')) {
