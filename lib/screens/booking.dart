@@ -18,7 +18,7 @@ class Booking extends StatefulWidget {
 class _BookingState extends State<Booking> {
   gotoAvaFlight(BuildContext ctx) {
     Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return const AvailableFlight();
+      return  AvailableFlight();
     }));
   }
 

@@ -1,6 +1,8 @@
 
+
 import 'package:flutter/material.dart';
-import 'package:zeft/colors.dart';
+
+
 import '../firebase/auth.dart';
 import 'airline_reservation.dart';
 import 'new_account.dart';
@@ -12,6 +14,9 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
+Color c = const Color.fromRGBO(196, 230, 251, 1);
+Color cb = const Color.fromRGBO(61, 103, 107, 1);
+
 gotoAirlineReservation(BuildContext ctx) {
   Navigator.of(ctx).pushReplacement(MaterialPageRoute(builder: (_) {
     return const AirlineReservation();
@@ -21,27 +26,28 @@ gotoAirlineReservation(BuildContext ctx) {
 class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  void showDialogError(String message) {
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('An Error Occurred'),
+          content: Text(message),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: const Text('OK'))
+          ],
+        ));
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    void showDialogMessage() {
-      showDialog(
-          context: context,
-          builder: (ctx) => AlertDialog(
-                content: const Text("You must enter email and password."),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.of(ctx).pop();
-                      },
-                      child: const Text('back'))
-                ],
-              ));
-    }
-
     return Scaffold(
       //C5E7FC
-      backgroundColor: lightBlue,
+      backgroundColor: c,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -70,13 +76,13 @@ class _LoginState extends State<Login> {
                         }
                         return null;
                       },
-                      decoration: InputDecoration(
-                        label: const Text('Enter Email'),
-                        fillColor: white,
+                      decoration: const InputDecoration(
+                        label: Text('Enter Email'),
+                        fillColor: Colors.white,
                         filled: true,
                         enabledBorder:
-                            const OutlineInputBorder(borderSide: BorderSide()),
-                        focusedBorder: const OutlineInputBorder(
+                            OutlineInputBorder(borderSide: BorderSide()),
+                        focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(width: 1)),
                       ),
                     ),
@@ -98,13 +104,13 @@ class _LoginState extends State<Login> {
                         return null;
                       },
                       obscureText: true,
-                      decoration: InputDecoration(
-                        label: const Text('Enter password'),
-                        fillColor: white,
+                      decoration: const InputDecoration(
+                        label: Text('Enter password'),
+                        fillColor: Colors.white,
                         filled: true,
                         enabledBorder:
-                            const OutlineInputBorder(borderSide: BorderSide()),
-                        focusedBorder: const OutlineInputBorder(
+                            OutlineInputBorder(borderSide: BorderSide()),
+                        focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(width: 1)),
                       ),
                     ),
@@ -117,58 +123,57 @@ class _LoginState extends State<Login> {
                     height: 40,
                     width: 100,
                     decoration: BoxDecoration(
-                      color: darkBlue,
+                      color: cb,
                       borderRadius: const BorderRadius.all(
                         Radius.circular(6),
                       ),
                     ),
                     child: TextButton(
-                      onPressed: () {
-                        if (emailController.text.isEmpty ||
-                            passwordController.text.isEmpty) {
-                          showDialogMessage();
+                      onPressed: () async{
+                       try{
+                         await Auth().signIn(emailController.text,passwordController.text).
+                        then((value) => Navigator.pushReplacement(context,MaterialPageRoute(builder: (_){
+                          return const AirlineReservation();
                         }
-                        else {
-                          Auth()
-                              .signIn(
-                                  emailController.text, passwordController.text)
-                              .then((value) => Navigator.pushReplacement(
-                                      context, MaterialPageRoute(builder: (_) {
-                                    return const AirlineReservation();
-                                  })));
-                        }
+                        )));
+                       }
+                       catch (error) {
+                         var errorMessage = 'Authentication failed';
+                         if (error.toString().contains('EMAIL_NOT_FOUND')) {
+                           errorMessage = 'This email address is not found ';
+                         } else if (error.toString().contains('INVALID_EMAIL')) {
+                           errorMessage = 'This is not email address ';
+                         } else if (error.toString().contains('WEAK_PASSWORD')) {
+                           errorMessage = 'This password is too weak ';
+                         }  else if (error
+                             .toString()
+                             .contains('INVALID_PASSWORD')) {
+                           errorMessage = 'Invalid password ';
+                         }
+                         showDialogError(errorMessage);
+                       }
                       },
-                      child: Text(
+                      child: const Text(
                         'Login',
-                        style: TextStyle(color: white, fontSize: 20),
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
                     )),
                 const SizedBox(
                   height: 25,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Don't have an account?",
-                    ),
-                    const SizedBox(width: 5),
-                    InkWell(
-                      child: const Center(
-                          child: Text(
-                        "Sign up",
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: Colors.blue),
-                      )),
-                      onTap: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (_) {
-                          return const NewAccount();
-                        }));
-                      },
-                    ),
-                  ],
+                InkWell(
+                  child: const Center(
+                      child: Text(
+                    'Create new account',
+                    style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue),
+                  )),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                      return const NewAccount();
+                    }));
+                  },
                 ),
               ],
             ),
